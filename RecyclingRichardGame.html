@@ -43,18 +43,24 @@
     {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('ground', 'assets/platform.png');
-        this.load.spritesheet('dude', 'assets/dude.png', {frameWidth: 32, frameHeight: 48});
+        //this.load.spritesheet('dude', 'assets/dude.png', {frameWidth: 32, frameHeight: 48});
         this.load.spritesheet('richard', 'assets/RichardSprite2.png', {frameWidth: 170, frameHeight: 340});
+        this.load.image('whitetrashbag', 'assets/whitetrashbag2.png');
+        this.load.image('applecore', 'assets/applecore2.png');
+        this.load.image('bottle', 'assets/bottle.png');
     }
 
     function create ()
     {
         this.add.image(400, 300, 'sky');
+        this.add.image(600, 500, 'whitetrashbag');
+        this.add.image(550, 520, 'applecore');
+        this.add.image(530, 520, 'bottle').setScale(.05);
 
         platforms = this.physics.add.staticGroup();
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
         
-        player = this.physics.add.sprite(100, 250, 'richard');
+        player = this.physics.add.sprite(200, 250, 'richard');
         player.setCollideWorldBounds(true);
 
         cursors = this.input.keyboard.createCursorKeys();
@@ -75,7 +81,7 @@
             repeat: -1
         });
 
-        
+        player.anims.play('right', true);
 
     }
 
@@ -88,17 +94,17 @@
 
         if (cursors.right.isDown) 
         {
-            player.body.setVelocityX(200); // move right
+            //player.body.setVelocityX(200); // move right
             player.anims.play('right', true);
         } 
-        else if (cursors.left.isDown) 
+        /*else if (cursors.left.isDown) 
         {
             player.body.setVelocityX(-200); // move left
             player.anims.play('idle', true);
-        } 
+        } */
         else 
         {
-            player.body.setVelocityX(0);
+            //player.body.setVelocityX(0);
             player.anims.play('idle', true);
         }
 
