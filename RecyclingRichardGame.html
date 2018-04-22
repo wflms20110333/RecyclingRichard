@@ -79,12 +79,17 @@
         //this.physics.add.collider(player, movingPlatforms);
 
         // add moving platforms
-        movingPlatforms = this.physics.add.group();
+        //movingPlatforms = this.physics.add.group();
+        movingPlatforms = [];
         var lol = this.physics.add.sprite(600, 400, 'ground');
         lol.body.allowGravity = false;
         lol.body.setVelocityX(dx);
+        //lol.body.immovable.y = true;
+        lol.body.bounce = 0;
         this.physics.add.collider(player, lol);
+        movingPlatforms.push(lol);
         //movingPlatforms.create(lol);
+        //this.physics.add.collider(player, movingPlatforms);
 
         this.anims.create({
             key: 'idle',
@@ -132,7 +137,7 @@
         }
         if ((cursors.up.isDown) && player.body.touching.down)
         {
-            player.body.setVelocityY(-300); // jump up
+            player.body.setVelocityY(-500); // jump up
         }
 
         for (i = 0; i < objects.length; i++)
