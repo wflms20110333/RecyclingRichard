@@ -33,7 +33,6 @@
             update: update
         }
     };
-
     var game = new Phaser.Game(config);
     var platforms;
     var cursors;
@@ -42,8 +41,14 @@
     var objects;
     var dx;
     var badStuff;
+    var goodStuff;
+    var stuff;
     var timer;
     var movingPlatforms;
+    var trash;
+    var recycle;
+    var score = 0;
+    var scoreText;
 
     function preload ()
     {
@@ -52,22 +57,28 @@
         //this.load.spritesheet('dude', 'assets/dude.png', {frameWidth: 32, frameHeight: 48});
         this.load.spritesheet('richard', 'assets/RichardSprite2.png', {frameWidth: 170, frameHeight: 340});
         this.load.image('whitetrashbag', 'assets/whitetrashbag2.png');
-        this.load.image('applecore', 'assets/applecore2.png');
-        this.load.image('bottle', 'assets/bottle.png');
+        this.load.image('applecore', 'assets/applecore3.png');
+        this.load.image('bottle', 'assets/bottle2.png');
+        this.load.image('bananapeel', 'assets/bananapeel2.png');
+        this.load.image('can', 'assets/can2.png');
+        this.load.image('paper', 'assets/paper2.png');
     }
-
     function create ()
     {
-        dx = -100;
+        dx = -300;
         objects = [];
-
         // initiating badStuff
         badStuff = [];
         badStuff.push('whitetrashbag');
         badStuff.push('applecore');
+        badStuff.push('bananapeel');
+        goodStuff = [];
+        goodStuff.push('bottle');
+        goodStuff.push('can');
+        goodStuff.push('paper');
+        stuff = badStuff.concat(goodStuff);
 
         this.add.image(400, 300, 'sky');
-
         platforms = this.physics.add.staticGroup();
         platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
@@ -77,19 +88,24 @@
         cursors = this.input.keyboard.createCursorKeys();
         this.physics.add.collider(player, platforms);
         //this.physics.add.collider(player, movingPlatforms);
-
         // add moving platforms
         //movingPlatforms = this.physics.add.group();
         movingPlatforms = [];
-        var lol = this.physics.add.sprite(600, 400, 'ground');
+        /*var lol = this.physics.add.sprite(600, 400, 'ground');
         lol.body.allowGravity = false;
         lol.body.setVelocityX(dx);
         //lol.body.immovable.y = true;
         lol.body.bounce = 0;
         this.physics.add.collider(player, lol);
-        movingPlatforms.push(lol);
+        //movingPlatforms.push(lol);
         //movingPlatforms.create(lol);
         //this.physics.add.collider(player, movingPlatforms);
+        */
+
+
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        
+
 
         this.anims.create({
             key: 'idle',
@@ -104,7 +120,6 @@
             repeat: -1
         });
         player.anims.play('right', true);
-
         // random trash start showing up
         timedEvent = this.time.addEvent({
             delay: 2000,
@@ -113,33 +128,31 @@
             callbackScope: this
         })
     }
-
     function update() 
     {
         if (gameOver) 
         {
             return;
         }
-        if (cursors.right.isDown) 
+        /*if (cursors.right.isDown) 
         {
             //player.body.setVelocityX(200); // move right
             player.anims.play('right', true);
         } 
-        /*else if (cursors.left.isDown) 
+        else if (cursors.left.isDown) 
         {
             player.body.setVelocityX(-200); // move left
             player.anims.play('idle', true);
-        } */
+        } 
         else 
         {
             //player.body.setVelocityX(0);
             player.anims.play('idle', true);
-        }
+        }*/
         if ((cursors.up.isDown) && player.body.touching.down)
         {
             player.body.setVelocityY(-500); // jump up
         }
-
         for (i = 0; i < objects.length; i++)
         {
             if (objects[i].x < 0) {
@@ -159,14 +172,40 @@
         }
         */
     }
-
+    
     function addTrash()
     {
-        var ind = Math.floor(Math.random() * badStuff.length);
-        var trash = this.physics.add.sprite(600, 500, badStuff[ind]);
-        this.physics.add.collider(trash, platforms);
-        this.physics.add.collider(trash, movingPlatforms);
-        objects.push(trash);
+        if (Math.random() < .5) {
+            var ind = Math.floor(Math.random() * badStuff.length);
+            trash = this.physics.add.sprite(850, 500, badStuff[ind]);
+            this.physics.add.collider(trash, platforms);
+            this.physics.add.overlap(player, trash, collideTrash, null, this);
+            //this.physics.add.collider(trash, movingPlatforms);
+            objects.push(trash);
+        }
+        else {
+            var ind = Math.floor(Math.random() * goodStuff.length);
+            recycle = this.physics.add.sprite(850, 500, goodStuff[ind]);
+            this.physics.add.collider(recycle, platforms);
+            this.physics.add.overlap(player, recycle, collideRecycle, null, this);
+            //this.physics.add.collider(trash, movingPlatforms);
+            objects.push(recycle);
+        }
+        
+    }
+
+    function collideRecycle(player, recycle)
+    {
+        recycle.disableBody(true, true);
+        score += 10;
+        scoreText.setText('Score: ' + score);
+    }
+
+    function collideTrash(player, trash)
+    {
+        trash.disableBody(true, true);
+        score -= 10;
+        scoreText.setText('Score: ' + score);
     }
     
 </script>
