@@ -6,7 +6,7 @@ RecyclingRichard is a simple endless runner/platformer that helps people learn t
 
 ## Built With
 
-* [Phaser](https://phaser.io/) - HTML5 Game Framework
+* [Phaser](https://phaser.io/) - HTML5 game framework
 
 ## Authors
 
