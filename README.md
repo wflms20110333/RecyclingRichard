@@ -10,6 +10,6 @@ RecyclingRichard is a simple endless runner/platformer that helps people learn t
 
 ## Authors
 
-* [Richard Guo](https://github.com/richardg999)
+* [Richard Guo](https://github.com/richardg999) - *Front-End Framework*
 * [Sanjay Salem](https://github.com/sanjaysalem17) - *Graphics and UI*
-* [Elizabeth Zou](https://github.com/wflms20110333)
+* [Elizabeth Zou](https://github.com/wflms20110333) - *Front-End Framework*
