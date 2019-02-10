@@ -2,7 +2,7 @@
 
 RecyclingRichard is a simple endless runner/platformer that helps people learn to distinguish between recyclable and non-recyclable items. Press the up arrow to jump over trash and earn points by collecting recyclable items! Points are deducted if you run into trash.
 
-[Try it out](https://richboy.itch.io/recycling-richard)
+[Try it out!](https://richboy.itch.io/recycling-richard)
 
 ## Built With
 
@@ -10,6 +10,6 @@ RecyclingRichard is a simple endless runner/platformer that helps people learn t
 
 ## Authors
 
-* [Richard Guo](https://github.com/richardg999) - *Front-End Framework*
-* [Sanjay Salem](https://github.com/sanjaysalem17) - *Graphics and UI*
-* [Elizabeth Zou](https://github.com/wflms20110333) - *Front-End Framework*
+* [Richard Guo](https://github.com/richardg999)
+* [Sanjay Salem](https://github.com/sanjaysalem17) - *Graphics*
+* [Elizabeth Zou](https://github.com/wflms20110333)
