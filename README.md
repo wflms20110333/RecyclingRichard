@@ -4,6 +4,8 @@ RecyclingRichard is a simple endless runner/platformer that helps people learn t
 
 [Try it out!](https://richboy.itch.io/recycling-richard)
 
+Created and demoed at EarthxHack 2018 (https://devpost.com/software/recycling-richard).
+
 ## Built With
 
 * [Phaser](https://phaser.io/) - HTML5 game framework
